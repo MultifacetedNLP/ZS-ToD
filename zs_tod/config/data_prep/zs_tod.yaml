@@ -1,0 +1,13 @@
+project_root: /mounts/u-amo-d0/grad/adibm/data/projects/zs-tod/zs_tod
+raw_data_root: data/dstc8-schema-guided-dialogue/
+processed_data_root: processed_data/simple_tod
+num_dialogs: 1
+delexicalize: false
+overwrite:
+  - true
+  - true
+  - true
+num_turns: 26
+domain_setting:
+  - all
+data_prep_multi_process: false
