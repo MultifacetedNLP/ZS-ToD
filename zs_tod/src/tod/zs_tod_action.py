@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from sgd_dstc8_data_model.dstc_dataclasses import DstcRequestedSlot
 
-from my_enums import SimpleTodConstants
+from my_enums import ZsTodConstants
 import utils
 
 
@@ -20,15 +20,15 @@ class ZsTodAction:
         self, text: str, slot_categories: dict[str, bool] = None
     ) -> "ZsTodAction":
         try:
-            action_type, rest = text.split(SimpleTodConstants.SLOT_VALUE_SEPARATOR)
+            action_type, rest = text.split(ZsTodConstants.SLOT_VALUE_SEPARATOR)
         except ValueError:
             return self("", "", prediction=text)
         try:
-            dom_slot, values = rest.split(SimpleTodConstants.ACTION_VALUE_SEPARATOR)
+            dom_slot, values = rest.split(ZsTodConstants.ACTION_VALUE_SEPARATOR)
         except ValueError:
             return self("", action_type, prediction=text)
         try:
-            domain, slot_name = dom_slot.split(SimpleTodConstants.DOMAIN_SLOT_SEPARATOR)
+            domain, slot_name = dom_slot.split(ZsTodConstants.DOMAIN_SLOT_SEPARATOR)
         except ValueError:
             return self("", action_type, values, text)
         is_categorical = None
@@ -52,8 +52,8 @@ class ZsTodAction:
 
     def is_inform(self) -> bool:
         return (
-            self.action_type == SimpleTodConstants.ACTION_TYPE_INFORM
-            or self.action_type == SimpleTodConstants.ACTION_TYPE_INFORM_COUNT
+            self.action_type == ZsTodConstants.ACTION_TYPE_INFORM
+            or self.action_type == ZsTodConstants.ACTION_TYPE_INFORM_COUNT
         )
 
     def __repr__(self) -> str:
@@ -63,11 +63,11 @@ class ZsTodAction:
         return "".join(
             [
                 self.action_type,
-                SimpleTodConstants.SLOT_VALUE_SEPARATOR,
+                ZsTodConstants.SLOT_VALUE_SEPARATOR,
                 self.domain,
-                SimpleTodConstants.DOMAIN_SLOT_SEPARATOR,
+                ZsTodConstants.DOMAIN_SLOT_SEPARATOR,
                 self.slot_name,
-                SimpleTodConstants.ACTION_VALUE_SEPARATOR,
+                ZsTodConstants.ACTION_VALUE_SEPARATOR,
                 self.values,
             ]
         )

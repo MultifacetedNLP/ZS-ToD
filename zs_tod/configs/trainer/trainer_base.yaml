@@ -1,0 +1,53 @@
+pretrain_epochs: 10
+train_epochs: 10
+pretrain_batch_size: 5
+train_batch_size: 5
+data_split_percent:
+- 1
+- 1
+- 1
+# data_split_percent:
+# - .1
+# - 1
+# - .1
+eval_batch_size: 10
+eval_steps: 50
+test_batch_size: 8
+test_prompt_max_len: 750
+max_token_len: 1024
+# num_dialogs:
+# - 1
+# - 1
+# - 1
+num_dialogs:
+- 127
+- 20
+- 34
+# overwrite:
+#   - true
+#   - true
+#   - true
+should_test: true
+train_domain_settings: 
+  - seen
+dev_domain_settings: 
+  - all
+test_domain_settings:
+  - [all]
+  - [seen]
+  - [unseen]
+# train_domain_settings:
+#   - Restaurants_1
+# dev_domain_settings:
+#   - Restaurants_2
+# test_domain_settings:
+#   - [Restaurants_2]
+project_root : /mounts/u-amo-d0/grad/adibm/data/projects/ZSToD/
+model_name: gpt2
+postprocess_generation: true
+fp16: false
+gradient_accumulation_steps: 32
+eval_accumulation_steps: 32
+two_step_training: true
+context_type: default
+should_add_schema: false

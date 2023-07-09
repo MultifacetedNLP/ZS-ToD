@@ -9,7 +9,7 @@ from omegaconf import DictConfig, ListConfig, OmegaConf
 from tqdm import tqdm
 import humps
 from configs.dataprep_config import DataPrepConfig
-from my_enums import Steps, SimpleTodConstants
+from my_enums import Steps, ZsTodConstants
 from tod.turns.general_turn_csv_row import GeneralTurnCsvRow
 from tod.turns.turn_csv_row import TurnCsvRowBase
 from tod.turns.zs_tod_turn import ZsTodTurn
@@ -94,7 +94,7 @@ class ZsTodDSTCDataPrep:
                 "".join(
                     [
                         frame.short_service,
-                        SimpleTodConstants.DOMAIN_SLOT_SEPARATOR,
+                        ZsTodConstants.DOMAIN_SLOT_SEPARATOR,
                         slot,
                     ]
                 )
@@ -121,7 +121,7 @@ class ZsTodDSTCDataPrep:
                         frame.short_service,
                         action.act,
                         action.slot,
-                        SimpleTodConstants.ACTION_VALUE_SEPARATOR.join(action.values),
+                        ZsTodConstants.ACTION_VALUE_SEPARATOR.join(action.values),
                     )
                 )
         return actions
@@ -142,7 +142,7 @@ class ZsTodDSTCDataPrep:
                         continue
                     replacement = (
                         # f"<{frame.short_service}_{humps.camelize(action.slot)}>"
-                        f"<{frame.short_service}{SimpleTodConstants.DOMAIN_SLOT_SEPARATOR}{action.slot}>"
+                        f"<{frame.short_service}{ZsTodConstants.DOMAIN_SLOT_SEPARATOR}{action.slot}>"
                     )
                     delexicalized_utterance = delexicalized_utterance.replace(
                         value, replacement
